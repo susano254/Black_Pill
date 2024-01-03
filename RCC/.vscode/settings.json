@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"*.asm": "nasm",
+		"*.s": "arm",
+		"*.tcc": "cpp",
+		"unordered_map": "cpp",
+		"initializer_list": "cpp",
+		"vector": "cpp"
+	}
+}
