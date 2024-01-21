@@ -13,31 +13,6 @@ using namespace global;
 
 uint32_t millis;
 uint32_t prev_millis;
-uint32_t tim6_overflows = 0;
-// uint32_t tim6_reload = 40000-1;
-uint32_t tim6_prev_millis = 0;
-uint32_t timX_millis = 0;
-uint32_t timX_prev_millis = 0;
-
-// TIM_TypeDef *TIM6_Base = TIM6;
-// DWT_Type *DWT_Base = DWT;
-// SCB_Type *SCB_Base = SCB;
-// CoreDebug_Type *CoreDebug_Base = CoreDebug;
-
-// struct Micros {
-// 	uint32_t overflows;
-// 	uint16_t ticks;
-// 
-// 	Micros(uint16_t ticks, uint32_t overflows) : overflows(overflows), ticks(ticks) {}
-// };
-// 
-// Micros get_micros(){
-// 	return Micros(TIM6->CNT, tim6_overflows);
-// }
-// 
-// float getdt(Micros cur_micros, Micros prev_micros){
-// 	return  (cur_micros.ticks- prev_micros.ticks)*0.000001f + (cur_micros.overflows-prev_micros.overflows)*0.065535f;
-// }
 
 void delay(uint32_t milliseconds){
 	uint32_t startmillis = Systick.getMillis();
@@ -109,9 +84,8 @@ void QuadCopter::init_timer(){
 	tim3_init.instance = TIM3;					// choose timer2
 	tim3_init.direction = TIM_DIR_UPCOUNT;		// up count direction
 	tim3_init.preload = TIM_CR1_ARPE;			// Auto reload preload enable
-	tim3_init.prescaler = 80-1;					// no prescaler it's getting the full 80Mhz of the controller clock
+	tim3_init.prescaler = 84-1;					// no prescaler it's getting the full 80Mhz of the controller clock
 	tim3_init.auto_reload = 16650-1;			// acheiving a period of 16.77ms for 60Hz
-
 
 	RCC_TIM3_CLK_ENABLE();							// enable clock first as usual
 
@@ -256,14 +230,3 @@ void QuadCopter::Update() {
 	motors[2].setThrust(direct - controllers.Roll.command);
 	motors[3].setThrust(direct + controllers.Roll.command);
 }
-
-// extern "C" {
-// 	void TIM6_DAC_IRQHandler(){
-// 		tim6_overflows++;
-// 
-// 
-// 		Nvic.clearPending(TIM6_DAC_IRQn);
-// 		TIM6->SR &= ~TIM_SR_UIF;
-// 	}
-// }
-
