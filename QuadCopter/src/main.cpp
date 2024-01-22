@@ -76,8 +76,8 @@ int main(){
 		}
 		// copter.mpu.printGyro();
 		// copter.mpu.printAcc();
-		copter.mpu.printQuaternion();
-		// print_data();
+		// copter.mpu.printQuaternion();
+		print_data();
 	}
 }
 
@@ -100,19 +100,19 @@ void receive(){
 
 void print_data(){
 		Serial.printFloat(copter.controllers.Roll.error);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.controllers.Roll.propotional);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.controllers.Roll.derivative);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.controllers.Roll.integral);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.motors[0].current_thrust);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.motors[1].current_thrust);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.motors[2].current_thrust);
-		Serial.printStr(",\t");
+		Serial.printStr("\t");
 		Serial.printFloat(copter.motors[3].current_thrust);
 		Serial.printStrln("");
 }

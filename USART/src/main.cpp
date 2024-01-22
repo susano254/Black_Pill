@@ -13,13 +13,11 @@ int main(){
 
 	Serial.printStrln("Started");
 	while (1) {
-		Serial.printStrln("Hello World");
-
-		// if(Serial.isAvailable()){
-		// 	string str = Serial.recieve();
-		// 	Serial.printInt(str.length());
-		// 	Serial.printStrln("");
-		// 	Serial.printStrln((char*) str.c_str());
-		// }
+		if(Serial.isAvailable()){
+			string str = Serial.recieve();
+			Serial.printInt(str.length());
+			Serial.printStrln("");
+			Serial.printStrln((char*) str.c_str());
+		}
 	}
 }

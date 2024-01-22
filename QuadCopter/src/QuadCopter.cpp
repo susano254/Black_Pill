@@ -72,7 +72,7 @@ void QuadCopter::init_pins(){
 	gpio_init(MOTORS_GPIO, &pin);
 	pin.pin = MOTOR2;
 	gpio_init(MOTORS_GPIO, &pin);
-	pin.pin = MOTOR3;				//leave PA2 for now because it's used with the usart peripheral
+	pin.pin = MOTOR3;
 	gpio_init(MOTORS_GPIO, &pin);
 	pin.pin = MOTOR4;
 	gpio_init(MOTORS_GPIO, &pin);
@@ -104,12 +104,12 @@ void QuadCopter::init_channels(){
 	// this range values are based on tests of escs ranges since I got ones 
 	// that don't support programming mode of range calibration :(
 	channel.no = 1;
-	motors.push_back(Motor(&timer, &channel, 750, 2000));
-	timer.channel_init(&channel);
-	channel.no = 2;
 	motors.push_back(Motor(&timer, &channel, 1150, 2000));
 	timer.channel_init(&channel);
-	channel.no = 1;
+	channel.no = 2;
+	motors.push_back(Motor(&timer, &channel, 750, 2000));
+	timer.channel_init(&channel);
+	channel.no = 3;
 	motors.push_back(Motor(&timer, &channel, 1050, 2000));
 	timer.channel_init(&channel);
 	channel.no = 4;
