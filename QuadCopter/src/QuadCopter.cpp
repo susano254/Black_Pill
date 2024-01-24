@@ -217,16 +217,16 @@ void QuadCopter::Control() {
 	dt = System.getDeltaT(prev_micros);
 	prev_micros = System.getMicros();
 
-	controllers.Roll.run(desired_roll, mpu.angles.roll, dt);
-	// controllers.Pitch.run(desired_pitch, mpu.angles.pitch, dt);
+	// controllers.Roll.run(desired_roll, mpu.angles.roll, dt);
+	controllers.Pitch.run(desired_pitch, mpu.angles.pitch, dt);
 	// controllers.Yaw.run(desired_yaw, mpu.angles.yaw, dt);
 	// controllers.Altitude.run(1, mpu.altitude, dt);)
 	Update();
 }
 
 void QuadCopter::Update() {
-	motors[0].setThrust(direct - controllers.Roll.command);
-	motors[1].setThrust(direct + controllers.Roll.command);
-	motors[2].setThrust(direct - controllers.Roll.command);
-	motors[3].setThrust(direct + controllers.Roll.command);
+	motors[0].setThrust(direct + controllers.Roll.command - controllers.Pitch.command + controllers.Yaw.command);
+	motors[1].setThrust(direct + controllers.Roll.command + controllers.Pitch.command - controllers.Yaw.command);
+	motors[2].setThrust(direct - controllers.Roll.command + controllers.Pitch.command + controllers.Yaw.command);
+	motors[3].setThrust(direct - controllers.Roll.command - controllers.Pitch.command - controllers.Yaw.command);
 }

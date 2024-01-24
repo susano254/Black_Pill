@@ -92,20 +92,20 @@ void receive(){
 
 		copter.direct = numbers[0];
 		copter.desired_roll = numbers[1];
-		copter.controllers.Roll.kp = numbers[2];
-		copter.controllers.Roll.kd = numbers[3];
-		copter.controllers.Roll.ki = numbers[4];
+		copter.controllers.Pitch.kp = numbers[2];
+		copter.controllers.Pitch.kd = numbers[3];
+		copter.controllers.Pitch.ki = numbers[4];
 	}
 }
 
 void print_data(){
-		Serial.printFloat(copter.controllers.Roll.error);
+		Serial.printFloat(copter.controllers.Pitch.error);
 		Serial.printStr("\t");
-		Serial.printFloat(copter.controllers.Roll.propotional);
+		Serial.printFloat(copter.controllers.Pitch.propotional);
 		Serial.printStr("\t");
-		Serial.printFloat(copter.controllers.Roll.derivative);
+		Serial.printFloat(copter.controllers.Pitch.derivative);
 		Serial.printStr("\t");
-		Serial.printFloat(copter.controllers.Roll.integral);
+		Serial.printFloat(copter.controllers.Pitch.integral);
 		Serial.printStr("\t");
 		Serial.printFloat(copter.motors[0].current_thrust);
 		Serial.printStr("\t");
