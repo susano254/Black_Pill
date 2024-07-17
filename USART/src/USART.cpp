@@ -318,6 +318,7 @@ string VirtualPort::recieve() {
 
 extern "C" {
 	void USART2_IRQHandler(){
+		uint8_t temp = USART2->SR;
 		uint8_t value = *(volatile uint8_t*)&USART2->DR;
 		Serial.buffer += value;
 		if(value == '\n' || value == '\r' || value == '\0'){

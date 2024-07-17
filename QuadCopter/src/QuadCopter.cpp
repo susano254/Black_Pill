@@ -161,17 +161,11 @@ void QuadCopter::init_controllers() {
 void QuadCopter::Init(){
   	init_motors();
 
-	direct = 5;
-	Update();
-
 	mpu.Init();
 	mpu.calibrate();
 
 	nrf.init(CE_PIN, CSN_PIN);
 	nrf.setRxMode(nrf.defaultAddr, 0);
-
-	direct = 00;
-	Update();
 }
 
 void QuadCopter::NRF_Read(bool print){
@@ -217,9 +211,9 @@ void QuadCopter::Control() {
 	dt = System.getDeltaT(prev_micros);
 	prev_micros = System.getMicros();
 
-	// controllers.Roll.run(desired_roll, mpu.angles.roll, dt);
+	controllers.Roll.run(desired_roll, mpu.angles.roll, dt);
 	controllers.Pitch.run(desired_pitch, mpu.angles.pitch, dt);
-	// controllers.Yaw.run(desired_yaw, mpu.angles.yaw, dt);
+	controllers.Yaw.run(desired_yaw, mpu.angles.yaw, dt);
 	// controllers.Altitude.run(1, mpu.altitude, dt);)
 	Update();
 }

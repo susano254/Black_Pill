@@ -76,19 +76,20 @@ int main(){
 		}
 		// copter.mpu.printGyro();
 		// copter.mpu.printAcc();
+		// copter.mpu.printValues();
 		// copter.mpu.printQuaternion();
 		print_data();
 	}
 }
 
 void receive(){
-	vector<float> numbers;
+	float numbers[5];
 	string str = Serial.recieve();
-	// Serial.printStrln((char*) str.c_str());
+	Serial.printStrln((char*) str.c_str());
 	vector<string> values = split(str, ',');
 	if(values.size() == n){
 		for(int i = 0; i < n; i++)
-			numbers.push_back(stof(values[i]));
+			numbers[i] = stof(values[i]);
 
 		copter.direct = numbers[0];
 		copter.desired_roll = numbers[1];

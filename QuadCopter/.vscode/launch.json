@@ -18,6 +18,7 @@
 				"target/stm32f4x.cfg"
 			],
 			"svdFile": "../STM32F401.svd",
+
 			"preLaunchTask": "Build"
 		}
 	]
